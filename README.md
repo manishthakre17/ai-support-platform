@@ -1,2 +1,2 @@
-# -ai-support-platform
+# ai-support-platform
 Production ready AI support platform
