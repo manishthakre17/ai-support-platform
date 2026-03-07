@@ -16,3 +16,7 @@ spring:
       enabled: true
   application:
     name: auth-service
+    
+jwt:
+  secret: 9d3b6a7c8f1e2d3c4b5a6f7e8c9d0a1b9d3b6a7c8f1e2d3c
+  expiration: 3600000

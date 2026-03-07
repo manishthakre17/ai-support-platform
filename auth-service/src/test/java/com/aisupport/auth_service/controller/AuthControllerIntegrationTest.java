@@ -33,6 +33,22 @@ class AuthControllerIntegrationTest {
                 .content(requestBody))
                 .andExpect(status().isCreated());
     }
+    
+    @Test
+    void shouldUserLogin() throws Exception{
+    	String body = """
+    		{
+    				"name" : "Manish",
+    				"email":"manish@gmail.com",
+    				"password" : "12345"
+    		}""";
+    	 mockMvc.perform(post("/api/auth/login")
+                 .contentType(MediaType.APPLICATION_JSON)
+                 .content(body))
+                 .andExpect(status().isOk())
+                 .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath("$.token").exists());;
+    	
+    }
 
     @Test
     void shouldReturnBadRequestForInvalidData() throws Exception {

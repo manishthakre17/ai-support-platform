@@ -25,10 +25,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<String> handleEmailAlreadyExists(
-            EmailAlreadyExistsException ex) {
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<String> handleInvalidCredentials(InvalidCredentialsException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ex.getMessage());
+    }
 
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<String> handleEmailExists(EmailAlreadyExistsException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ex.getMessage());
     }
 }
